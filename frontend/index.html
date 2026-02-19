@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портал отпусков</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏖️ Корпоративный портал отпусков</h1>
+            <div class="stats" id="stats">
+                <div class="stat-card">Всего: <span id="total-count">0</span></div>
+                <div class="stat-card pending">В ожидании: <span id="pending-count">0</span></div>
+                <div class="stat-card approved">Одобрено: <span id="approved-count">0</span></div>
+                <div class="stat-card rejected">Отклонено: <span id="rejected-count">0</span></div>
+            </div>
+        </header>
+
+        <div class="filters">
+            <input type="text" id="employee-filter" placeholder="Фильтр по сотруднику">
+            <select id="status-filter">
+                <option value="">Все статусы</option>
+                <option value="pending">В ожидании</option>
+                <option value="approved">Одобрено</option>
+                <option value="rejected">Отклонено</option>
+            </select>
+            <button onclick="applyFilters()">Применить фильтры</button>
+            <button onclick="resetFilters()">Сбросить</button>
+        </div>
+
+        <div class="main-content">
+            <div class="form-container">
+                <h2>Новая заявка</h2>
+                <form id="vacation-form">
+                    <div class="form-group">
+                        <label for="employee-name">Сотрудник:</label>
+                        <input type="text" id="employee-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="start-date">Дата начала:</label>
+                        <input type="date" id="start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date">Дата окончания:</label>
+                        <input type="date" id="end-date" required>
+                    </div>
+                    <button type="submit">📝 Отправить заявку</button>
+                </form>
+            </div>
+
+            <div class="table-container">
+                <h2>Список заявок</h2>
+                <table id="vacations-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Сотрудник</th>
+                            <th>Дата начала</th>
+                            <th>Дата окончания</th>
+                            <th>Статус</th>
+                            <th>Дата создания</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Данные будут загружаться сюда -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для редактирования -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Редактировать заявку</h2>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                <div class="form-group">
+                    <label for="edit-employee">Сотрудник:</label>
+                    <input type="text" id="edit-employee" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-start">Дата начала:</label>
+                    <input type="date" id="edit-start" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-end">Дата окончания:</label>
+                    <input type="date" id="edit-end" required>
+                </div>
+                <button type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
